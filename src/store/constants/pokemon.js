@@ -1,0 +1,6 @@
+const ACTIONS = {
+  GET_POKEMON_LIST: 'GET_POKEMON_LIST',
+  GET_POKEMON: 'GET_POKEMON',
+};
+
+export default ACTIONS;
