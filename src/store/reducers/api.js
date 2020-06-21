@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import createApiReducer from '../helpers/createApiReducer';
-import ACTIONS from '../constants/pokemon';
+import ACTIONS from '../constants/redux';
 
 const api = combineReducers({
   get_pokemon_list: createApiReducer(ACTIONS.GET_POKEMON_LIST),

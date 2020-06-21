@@ -1,4 +1,4 @@
-import ACTIONS from '../constants/pokemon';
+import ACTIONS from '../constants/redux';
 
 const pokemon = (state = {}, action) => {
   const { type, payload } = action;

@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 import Tiles from './PageComponents/Tiles';
 import api from '../../store/selectors/api';
 import Bar from './PageComponents/Bar';
-import { getPokemonList } from '../../store/actions';
+import { getPokemonList, reloadPokemonList } from '../../store/actions';
 import pokemonList from '../../store/selectors/pokemonList';
-import ACTIONS from '../../store/constants/pokemon';
+import Loading from '../Loading';
 
 const Page = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const Page = () => {
     if (pokemonListSelector === undefined) {
       dispatch(getPokemonList(page));
     } else {
-      dispatch({ type: `${ACTIONS.GET_POKEMON_LIST}_RELOAD` });
+      dispatch(reloadPokemonList());
     }
   }, [dispatch, page, pokemonListSelector]);
 
@@ -32,7 +32,7 @@ const Page = () => {
         </>
       ) : null }
       {error ? 'Error...' : null }
-      {loading ? 'Loading...' : null }
+      {loading ? <Loading /> : null }
     </>
   );
 };

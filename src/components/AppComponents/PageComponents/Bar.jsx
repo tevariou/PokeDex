@@ -8,8 +8,8 @@ import PaginationItem from '@material-ui/lab/PaginationItem';
 import { Link, useParams } from 'react-router-dom';
 import { Pagination } from '@material-ui/lab';
 import pokemonCount from '../../../store/selectors/pokemonCount';
-import ACTIONS from '../../../store/constants/pokemon';
 import api from '../../../services/api';
+import { resetPokemonList } from '../../../store/actions';
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -32,7 +32,7 @@ const Bar = () => {
   const page = Number(id);
   const pokemonCountSelector = useSelector(pokemonCount(page));
 
-  const handleChange = () => dispatch({ type: `${ACTIONS.GET_POKEMON_LIST}_RESET` });
+  const handleChange = () => dispatch(resetPokemonList());
 
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>
