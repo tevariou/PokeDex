@@ -6,6 +6,7 @@ import api from '../../store/selectors/api';
 import Bar from './PageComponents/Bar';
 import { getPokemonList } from '../../store/actions';
 import pokemonList from '../../store/selectors/pokemonList';
+import ACTIONS from '../../store/constants/pokemon';
 
 const Page = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,8 @@ const Page = () => {
   useEffect(() => {
     if (pokemonListSelector === undefined) {
       dispatch(getPokemonList(page));
+    } else {
+      dispatch({ type: `${ACTIONS.GET_POKEMON_LIST}_RELOAD` });
     }
   }, [dispatch, page, pokemonListSelector]);
 

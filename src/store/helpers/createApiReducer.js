@@ -12,6 +12,7 @@ const createApiReducer = (name) => (state = defaultApiState, action) => {
         success: false,
         error: false,
       };
+    case `${name}_RELOAD`:
     case `${name}_SUCCESS`:
       return {
         loading: false,
