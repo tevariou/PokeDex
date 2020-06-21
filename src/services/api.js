@@ -1,9 +1,8 @@
 const API_URL = 'https://pokeapi.co/api/v2/pokemon';
 
-const OFFSET = 20;
-const LIMIT = 20;
+const INTERVAL = 50;
 
-const intervalFromPage = (page) => ({ offset: OFFSET * page, limit: LIMIT });
+const intervalFromPage = (page) => ({ offset: INTERVAL * page, limit: INTERVAL });
 
 const get = async (apiUrl, params = {}) => {
   const url = new URL(apiUrl);

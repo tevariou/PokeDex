@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
-import { useDispatch } from 'react-redux';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getPokemonList } from '../../../store/actions';
+import pokemonList from '../../../store/selectors/pokemonList';
+import sprite from '../../../services/sprite';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,63 +17,40 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
+    paddingBottom: 96,
   },
   gridList: {
-    width: 500,
-    height: 450,
+    transform: 'translateZ(0)',
+  },
+  titleBar: {
+    background: 'rgba(0,0,0,0) 0%', //   'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+    //   'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
   icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
+    color: 'black',
   },
 }));
 
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
 const Tiles = (props) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getPokemonList(props.page));
-  }, [dispatch]);
+  const { page } = props;
+  const pokemonListSelector = useSelector(pokemonList(page - 1));
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={180} className={classes.gridList}>
-        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <ListSubheader component="div">December</ListSubheader>
-        </GridListTile>
-        {tileData.map((tile) => (
-          <GridListTile key={tile.img}>
-            <img src={tile.img} alt={tile.title} />
+      <GridList cellHeight={96} spacing={1} className={classes.gridList} cols={5}>
+        {pokemonListSelector.map((pokemon) => (
+          <GridListTile key={`tile-${pokemon.name}`}>
+            <img style={{ width: '96px', height: '96px', marginRight: 'auto', marginLeft: 'auto', display: 'block' }} src={sprite(pokemon.url)} alt={pokemon.name} />
             <GridListTileBar
-              title={tile.title}
-              subtitle={(
-                <span>
-                  by:
-                  {tile.author}
-                </span>
-)}
+              title={pokemon.name}
               actionIcon={(
-                <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                  <InfoIcon />
+                <IconButton aria-label={`star ${pokemon.name}`} className={classes.icon}>
+                  <StarBorderIcon />
                 </IconButton>
               )}
+              actionPosition="left"
+              className={classes.titleBar}
             />
           </GridListTile>
         ))}
@@ -83,7 +60,7 @@ const Tiles = (props) => {
 };
 
 Tiles.propTypes = {
-  page: PropTypes.string,
+  page: PropTypes.number.isRequired,
 };
 
 export default Tiles;
