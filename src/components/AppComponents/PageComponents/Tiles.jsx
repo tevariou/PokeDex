@@ -6,27 +6,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridListTile from '@material-ui/core/GridListTile';
 import pokemonList from '../../../store/selectors/pokemonList';
 import Pokemon from './TilesComponents/Pokemon';
-import sprite from '../../../services/sprite';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
     paddingBottom: 65,
   },
   gridList: {
     transform: 'translateZ(0)',
   },
-  img: {
-    width: '96px',
-    height: '96px',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    display: 'block',
-  },
+
 }));
 
 const Tiles = () => {
@@ -40,8 +32,7 @@ const Tiles = () => {
       <GridList cellHeight={96} spacing={1} className={classes.gridList} cols={5}>
         {pokemonListSelector.map((pokemon) => (
           <GridListTile key={`tile-${pokemon.name}`}>
-            <img className={classes.img} src={sprite(pokemon.url)} alt={pokemon.name} />
-            <Pokemon name={pokemon.name} />
+            <Pokemon name={pokemon.name} url={pokemon.url} />
           </GridListTile>
         ))}
       </GridList>

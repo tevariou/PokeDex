@@ -20,6 +20,10 @@ const useStyles = makeStyles(() => ({
   toolBar: {
     justifyContent: 'center',
   },
+  typo: {
+    fontWeight: 900,
+    textShadow: '1px 1px 2px black',
+  },
   grow: {
     flexGrow: 1,
   },
@@ -37,8 +41,8 @@ const Bar = () => {
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
-        <Typography variant="h6" color="inherit">
-          Pokedex
+        <Typography variant="h6" color="inherit" className={classes.typo}>
+          PoKéDex
         </Typography>
         <Pagination
           page={page}
