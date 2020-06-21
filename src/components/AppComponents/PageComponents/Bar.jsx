@@ -17,6 +17,9 @@ const useStyles = makeStyles(() => ({
     bottom: 0,
     backgroundColor: '#bd0b32',
   },
+  toolBar: {
+    justifyContent: 'center',
+  },
   grow: {
     flexGrow: 1,
   },
@@ -33,7 +36,7 @@ const Bar = () => {
 
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>
-      <Toolbar>
+      <Toolbar className={classes.toolBar}>
         <Typography variant="h6" color="inherit">
           Pokedex
         </Typography>
