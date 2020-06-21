@@ -17,17 +17,17 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
-    paddingBottom: 96,
+    paddingBottom: 65,
   },
   gridList: {
     transform: 'translateZ(0)',
   },
   titleBar: {
-    background: 'rgba(0,0,0,0) 0%', //   'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+    background: 'rgba(0,0,0,0.1) 0%', //   'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
     //   'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
   icon: {
-    color: 'black',
+    color: 'white',
   },
 }));
 
