@@ -1,3 +1,3 @@
-const pokemon = (url) => (state) => state.pokemon[url];
+const pokemon = (name) => (state) => state.pokemon && state.pokemon[name];
 
 export default pokemon;

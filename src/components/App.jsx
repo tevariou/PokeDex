@@ -7,15 +7,13 @@ import {
 } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/styles';
 import { CssBaseline } from '@material-ui/core';
-import Bar from './AppComponents/Bar';
 import theme from '../config/theme';
-import Page from './Page/Page';
+import Page from './AppComponents/Page';
 
 const App = () => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
     <Router>
-      <Bar />
       <Switch>
         <Route exact path="/">
           <Redirect to="/1" />

@@ -6,7 +6,10 @@ const pokemonList = (state = {}, action) => {
     case `${ACTIONS.GET_POKEMON_LIST}_SUCCESS`:
       return {
         ...state,
-        [payload.page]: [...payload.results],
+        [payload.page - 1]: {
+          count: payload.count,
+          results: [...payload.results],
+        },
       };
     default:
       return state;

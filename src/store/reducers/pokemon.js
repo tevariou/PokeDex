@@ -6,7 +6,7 @@ const pokemon = (state = {}, action) => {
     case `${ACTIONS.GET_POKEMON}_SUCCESS`:
       return {
         ...state,
-        [payload.url]: payload,
+        [payload.name]: payload,
       };
     default:
       return state;

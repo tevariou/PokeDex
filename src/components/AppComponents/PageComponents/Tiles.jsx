@@ -6,7 +6,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import pokemonList from '../../../store/selectors/pokemonList';
 import sprite from '../../../services/sprite';
 
@@ -31,10 +31,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Tiles = (props) => {
+const Tiles = () => {
   const classes = useStyles();
-  const { page } = props;
-  const pokemonListSelector = useSelector(pokemonList(page - 1));
+  const { id } = useParams();
+  const page = Number(id);
+  const pokemonListSelector = useSelector(pokemonList(page));
 
   return (
     <div className={classes.root}>
@@ -57,10 +58,6 @@ const Tiles = (props) => {
       </GridList>
     </div>
   );
-};
-
-Tiles.propTypes = {
-  page: PropTypes.number.isRequired,
 };
 
 export default Tiles;
