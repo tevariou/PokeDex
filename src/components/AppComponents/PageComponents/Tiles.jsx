@@ -29,12 +29,12 @@ const Tiles = () => {
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={96} spacing={1} className={classes.gridList} cols={5}>
-        {pokemonListSelector.map((pokemon) => (
+      <GridList cellHeight={96} spacing={1} className={classes.gridList} cols={4}>
+        {pokemonListSelector ? pokemonListSelector.map((pokemon) => (
           <GridListTile key={`tile-${pokemon.name}`}>
             <Pokemon name={pokemon.name} url={pokemon.url} />
           </GridListTile>
-        ))}
+        )) : null }
       </GridList>
     </div>
   );

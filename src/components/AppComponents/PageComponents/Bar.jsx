@@ -22,6 +22,9 @@ const useStyles = makeStyles(() => ({
   },
   typo: {
     fontWeight: 900,
+    fontStyle: 'italic',
+    fontSize: '200%',
+    color: '#f1cb32',
     textShadow: '1px 1px 2px black',
   },
   grow: {
@@ -41,7 +44,7 @@ const Bar = () => {
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
-        <Typography variant="h6" color="inherit" className={classes.typo}>
+        <Typography variant="h6" color="secondary" className={classes.typo}>
           PoKéDex
         </Typography>
         <Pagination
@@ -49,12 +52,19 @@ const Bar = () => {
           count={Math.ceil(pokemonCountSelector / api.INTERVAL)}
           onChange={handleChange}
           renderItem={(item) => (
-            <PaginationItem
-              component={Link}
-              to={`/${item.page}`}
-              /* eslint-disable-next-line react/jsx-props-no-spreading */
-              {...item}
-            />
+            (page !== item.page) ? (
+              <PaginationItem
+                component={Link}
+                to={page !== item.page ? `/${item.page}` : null}
+                  /* eslint-disable-next-line react/jsx-props-no-spreading */
+                {...item}
+              />
+            ) : (
+              <PaginationItem
+                page={item.page}
+                disabled
+              />
+            )
           )}
         />
       </Toolbar>

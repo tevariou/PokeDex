@@ -1,6 +1,6 @@
 const API_URL = 'https://pokeapi.co/api/v2/pokemon';
 
-const INTERVAL = 50;
+const INTERVAL = 52;
 
 const intervalFromPage = (page) => ({ offset: INTERVAL * (page - 1), limit: INTERVAL });
 

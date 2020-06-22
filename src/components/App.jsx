@@ -5,13 +5,11 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/styles';
 import { CssBaseline } from '@material-ui/core';
-import theme from '../config/theme';
 import Page from './AppComponents/Page';
 
 const App = () => (
-  <ThemeProvider theme={theme}>
+  <>
     <CssBaseline />
     <Router>
       <Switch>
@@ -23,7 +21,7 @@ const App = () => (
         </Route>
       </Switch>
     </Router>
-  </ThemeProvider>
+  </>
 );
 
 export default App;

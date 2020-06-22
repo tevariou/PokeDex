@@ -12,6 +12,11 @@ import Loading from '../Loading';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundImage: 'linear-gradient(to top, rgb(189,240,211), rgb(121,190,239))',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    width: '100%',
+    height: '100%',
   },
 }));
 
