@@ -26,6 +26,12 @@ const useStyles = makeStyles(() => ({
     backgroundColor: '#bd0b32',
     color: 'white',
   },
+  primary: {
+    fontWeight: 900,
+  },
+  secondary: {
+    color: 'white',
+  },
 }));
 
 const Details = (props) => {
@@ -77,8 +83,8 @@ const Details = (props) => {
               </ListItemAvatar>
               <ListItemText
                 primary="Details"
-                classes={{ secondary: classes.root }}
-                secondary={`${pokemonSelector.height} cm ${pokemonSelector.weight} kg`}
+                classes={{ primary: classes.primary, secondary: classes.secondary }}
+                secondary={`${pokemonSelector.height} feet ${pokemonSelector.weight} lbs`}
               />
             </ListItem>
             <ListItem>
@@ -89,22 +95,10 @@ const Details = (props) => {
               </ListItemAvatar>
               <ListItemText
                 primary="Abilities"
-                classes={{ secondary: classes.root }}
+                classes={{ primary: classes.primary, secondary: classes.secondary }}
                 secondary={pokemonSelector.abilities?.reduce(
                   (acc, val) => `${acc} ${val.ability?.name?.toUpperCase()}`, '',
                 )}
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <ImageIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary="Stats"
-                classes={{ secondary: classes.root }}
-                secondary=""
               />
             </ListItem>
             <ListItem>
@@ -115,7 +109,7 @@ const Details = (props) => {
               </ListItemAvatar>
               <ListItemText
                 primary="Types"
-                classes={{ secondary: classes.root }}
+                classes={{ primary: classes.primary, secondary: classes.secondary }}
                 secondary={pokemonSelector.types?.reduce(
                   (acc, val) => `${acc} ${val.type?.name?.toUpperCase()}`, '',
                 )}
