@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import PaginationItem from '@material-ui/lab/PaginationItem';
 import { Link, useParams } from 'react-router-dom';
 import { Pagination } from '@material-ui/lab';
+import FormGroup from '@material-ui/core/FormGroup';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import pokemonCount from '../../../store/selectors/pokemonCount';
 import api from '../../../services/api';
 import { resetPokemonList } from '../../../store/actions';
@@ -39,6 +42,15 @@ const Bar = () => {
   const page = Number(id);
   const pokemonCountSelector = useSelector(pokemonCount(page));
 
+  const [state, setState] = useState({
+    checkedA: false,
+    checkedB: true,
+  });
+
+  const handleSwitch = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
+
   const handleChange = () => dispatch(resetPokemonList());
 
   return (
@@ -67,6 +79,12 @@ const Bar = () => {
             )
           )}
         />
+        <FormGroup row>
+          <FormControlLabel
+            control={<Switch checked={state.checkedA} onChange={handleSwitch} name="checkedA" />}
+            label="Collection only"
+          />
+        </FormGroup>
       </Toolbar>
     </AppBar>
   );
