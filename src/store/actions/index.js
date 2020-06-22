@@ -3,6 +3,8 @@ export {
   reloadPokemonList,
   resetPokemonList,
   getPokemon,
+  reloadPokemon,
+  resetPokemon,
 } from './pokemon';
 
 export {

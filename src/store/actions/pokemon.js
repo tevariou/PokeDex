@@ -10,3 +10,5 @@ export const getPokemonList = (page) => createRequest(
 export const getPokemon = (name) => createRequest(api.get(`/${name}`), ACTIONS.GET_POKEMON, { name });
 export const reloadPokemonList = () => ({ type: `${ACTIONS.GET_POKEMON_LIST}_RELOAD` });
 export const resetPokemonList = () => ({ type: `${ACTIONS.GET_POKEMON_LIST}_RESET` });
+export const reloadPokemon = () => ({ type: `${ACTIONS.GET_POKEMON}_RELOAD` });
+export const resetPokemon = () => ({ type: `${ACTIONS.GET_POKEMON}_RESET` });

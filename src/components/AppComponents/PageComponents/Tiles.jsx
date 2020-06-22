@@ -12,9 +12,7 @@ import api from '../../../services/api';
 
 const useStyles = makeStyles(() => ({
   root: {
-    // display: 'flex',
     flexWrap: 'wrap',
-    // justifyContent: 'space-around',
     overflow: 'hidden',
     paddingBottom: 65,
   },
@@ -45,7 +43,7 @@ const Tiles = () => {
             .keys(favoriteListSelector)
             .slice(api.INTERVAL * (page - 1), api.INTERVAL)
             .map((name) => (
-              <GridListTile key={`tile-${name}`}>
+              <GridListTile key={`tile-fav-${name}`}>
                 <Pokemon name={name} url={favoriteListSelector[name]} />
               </GridListTile>
             )) : null}
