@@ -14,6 +14,7 @@ import pokemonCount from '../../../store/selectors/pokemonCount';
 import api from '../../../services/api';
 import { resetPokemonList, displayCollection, hideCollection } from '../../../store/actions';
 import collectionState from '../../../store/selectors/collectionState';
+import favoriteCount from '../../../store/selectors/favoriteCount';
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -44,6 +45,7 @@ const Bar = () => {
   const page = Number(id);
   const pokemonCountSelector = useSelector(pokemonCount(page));
   const collectionStateSelector = useSelector(collectionState);
+  const favoriteCountSelector = useSelector(favoriteCount);
 
   const handleSwitch = (event) => {
     if (event.target.checked) {
@@ -64,13 +66,15 @@ const Bar = () => {
         </Typography>
         <Pagination
           page={page}
-          count={Math.ceil(pokemonCountSelector / api.INTERVAL)}
+          count={Math.ceil(
+            (collectionStateSelector ? favoriteCountSelector : pokemonCountSelector) / api.INTERVAL,
+          )}
           onChange={handleChange}
           renderItem={(item) => (
             (page !== item.page) ? (
               <PaginationItem
                 component={Link}
-                to={page !== item.page ? `/${item.page}` : null}
+                to={`/${item.page}`}
                   /* eslint-disable-next-line react/jsx-props-no-spreading */
                 {...item}
               />

@@ -1,14 +1,8 @@
-const createLocalStorage = (localStorageFunction, name, params = {}) => (dispatch) => {
-  try {
-    dispatch({
-      type: `${name.toUpperCase()}_SUCCESS`,
-      payload: {
-        ...params,
-        result: localStorageFunction,
-      },
-    });
-  } catch (e) {
-    dispatch({ type: `${name.toUpperCase()}_ERROR`, payload: e });
+const createLocalStorage = (result, name, params = {}) => (dispatch) => {
+  if (result) {
+    dispatch({ type: `${name.toUpperCase()}_LOAD`, payload: { ...params, result } });
+  } else {
+    dispatch({ type: `${name.toUpperCase()}_SUCCESS`, payload: { ...params } });
   }
 };
 

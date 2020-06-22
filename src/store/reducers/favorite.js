@@ -12,7 +12,7 @@ const favorite = (state = {}, action) => {
     case `${ACTIONS.DEL_FAVORITE}_SUCCESS`:
       delete ret[payload.name];
       return ret;
-    case `${ACTIONS.GET_FAVORITE}_SUCCESS`:
+    case `${ACTIONS.GET_FAVORITE}_LOAD`:
       return {
         ...state,
         [payload.name]: payload.result,
