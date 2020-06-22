@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 import PaginationItem from '@material-ui/lab/PaginationItem';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { Pagination } from '@material-ui/lab';
 import FormGroup from '@material-ui/core/FormGroup';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import pokemonCount from '../../../store/selectors/pokemonCount';
 import api from '../../../services/api';
-import { resetPokemonList } from '../../../store/actions';
+import { resetPokemonList, displayCollection, hideCollection } from '../../../store/actions';
+import collectionState from '../../../store/selectors/collectionState';
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -39,16 +40,18 @@ const Bar = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { id } = useParams();
+  const history = useHistory();
   const page = Number(id);
   const pokemonCountSelector = useSelector(pokemonCount(page));
-
-  const [state, setState] = useState({
-    checkedA: false,
-    checkedB: true,
-  });
+  const collectionStateSelector = useSelector(collectionState);
 
   const handleSwitch = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    if (event.target.checked) {
+      dispatch(displayCollection());
+    } else {
+      dispatch(hideCollection());
+    }
+    history.push('/');
   };
 
   const handleChange = () => dispatch(resetPokemonList());
@@ -81,7 +84,7 @@ const Bar = () => {
         />
         <FormGroup row>
           <FormControlLabel
-            control={<Switch checked={state.checkedA} onChange={handleSwitch} name="checkedA" />}
+            control={<Switch checked={collectionStateSelector} onChange={handleSwitch} name="switch" />}
             label="Collection only"
           />
         </FormGroup>

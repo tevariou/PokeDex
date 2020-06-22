@@ -56,7 +56,7 @@ const Pokemon = (props) => {
       dispatch(delFavorite(name));
       setStar(false);
     } else {
-      dispatch(addFavorite(name));
+      dispatch(addFavorite(name, url));
       setStar(true);
     }
   };
@@ -70,7 +70,9 @@ const Pokemon = (props) => {
   }, [dispatch, name]);
 
   useEffect(() => {
-    setStar(favoriteSelector);
+    if (favoriteSelector) {
+      setStar(true);
+    }
   }, [favoriteSelector]);
 
   useEffect(() => {

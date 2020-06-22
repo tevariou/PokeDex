@@ -10,3 +10,8 @@ export {
   addFavorite,
   delFavorite,
 } from './favorite';
+
+export {
+  displayCollection,
+  hideCollection,
+} from './collectionState';

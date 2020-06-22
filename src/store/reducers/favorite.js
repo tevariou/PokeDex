@@ -7,7 +7,7 @@ const favorite = (state = {}, action) => {
     case `${ACTIONS.ADD_FAVORITE}_SUCCESS`:
       return {
         ...state,
-        [payload.name]: true,
+        [payload.name]: payload.url,
       };
     case `${ACTIONS.DEL_FAVORITE}_SUCCESS`:
       delete ret[payload.name];
@@ -15,7 +15,7 @@ const favorite = (state = {}, action) => {
     case `${ACTIONS.GET_FAVORITE}_SUCCESS`:
       return {
         ...state,
-        [payload.name]: payload.result === 'true',
+        [payload.name]: payload.result,
       };
     default:
       return state;
