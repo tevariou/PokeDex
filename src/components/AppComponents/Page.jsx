@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import Tiles from './PageComponents/Tiles';
 import api from '../../store/selectors/api';
 import Bar from './PageComponents/Bar';
@@ -9,19 +8,7 @@ import { getPokemonList, reloadPokemonList } from '../../store/actions';
 import pokemonList from '../../store/selectors/pokemonList';
 import Loading from '../Loading';
 
-const useStyles = makeStyles(() => ({
-  root: {
-    backgroundImage: 'linear-gradient(to top, rgb(189,240,211), rgb(121,190,239))',
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    width: '100%',
-    height: '100%',
-  },
-}));
-
 const Page = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const { id } = useParams();
   const page = Number(id);
@@ -37,7 +24,7 @@ const Page = () => {
   }, [dispatch, page, pokemonListSelector]);
 
   return (
-    <div className={classes.root}>
+    <>
       {success ? (
         <>
           <Tiles />
@@ -46,7 +33,7 @@ const Page = () => {
       ) : null }
       {error ? 'Error...' : null }
       {loading ? <Loading /> : null }
-    </div>
+    </>
   );
 };
 
