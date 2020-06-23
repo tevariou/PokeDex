@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 import DetailsIcon from '@material-ui/icons/Details';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import EmojiNatureIcon from '@material-ui/icons/EmojiNature';
@@ -13,11 +11,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
+import Button from '@material-ui/core/Button';
 import Loading from '../../../../Loading';
 import pokemon from '../../../../../store/selectors/pokemon';
 import { getPokemon, resetPokemon } from '../../../../../store/actions';
 import api from '../../../../../store/selectors/api';
+import sprite from '../../../../../services/sprite';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -32,10 +31,14 @@ const useStyles = makeStyles(() => ({
   secondary: {
     color: 'white',
   },
+  cell: {
+    width: '100%',
+    height: '100%',
+  },
 }));
 
 const Details = (props) => {
-  const { name } = props;
+  const { name, url } = props;
   const classes = useStyles();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -43,6 +46,7 @@ const Details = (props) => {
   const id = open ? 'simple-popover' : undefined;
   const pokemonSelector = useSelector(pokemon(name));
   const { loading, success, error } = useSelector(api.get_pokemon);
+  const [src, setSrc] = useState('/blank96.png');
 
   const handleClose = () => {
     dispatch(resetPokemon());
@@ -54,11 +58,19 @@ const Details = (props) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleError = () => {
+    setSrc('/blank96.png');
+  };
+
+  useEffect(() => {
+    setSrc(sprite(url));
+  }, [url]);
+
   return (
     <>
-      <IconButton onClick={handleClick}>
-        <InfoIcon />
-      </IconButton>
+      <Button className={classes.cell} onClick={handleClick}>
+        <img className={classes.img} src={src} onError={handleError} alt={name} />
+      </Button>
       <Popover
         id={id}
         open={open}
@@ -126,6 +138,7 @@ const Details = (props) => {
 
 Details.propTypes = {
   name: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default Details;

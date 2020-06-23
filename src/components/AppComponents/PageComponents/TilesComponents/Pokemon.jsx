@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import favorite from '../../../../store/selectors/favorite';
 import { addFavorite, delFavorite, getFavorite } from '../../../../store/actions';
-import sprite from '../../../../services/sprite';
 import Details from './PokemonComponents/Details';
 
 const useStyles = makeStyles(() => ({
@@ -21,12 +20,13 @@ const useStyles = makeStyles(() => ({
   iconDisable: {
     color: 'white',
   },
+  cell: {
+    height: '100%',
+    width: '100%',
+  },
   img: {
     width: '96px',
     height: '96px',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    display: 'block',
   },
 }));
 
@@ -35,7 +35,6 @@ const Pokemon = (props) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const [star, setStar] = useState(false);
-  const [src, setSrc] = useState('/blank96.png');
   const favoriteSelector = useSelector(favorite(name));
 
   const handleClick = () => {
@@ -48,10 +47,6 @@ const Pokemon = (props) => {
     }
   };
 
-  const handleError = () => {
-    setSrc('/blank96.png');
-  };
-
   useEffect(() => {
     dispatch(getFavorite(name));
   }, [dispatch, name]);
@@ -62,13 +57,9 @@ const Pokemon = (props) => {
     }
   }, [favoriteSelector]);
 
-  useEffect(() => {
-    setSrc(sprite(url));
-  }, [url]);
-
   return (
     <>
-      <img className={classes.img} src={src} onError={handleError} alt={name} />
+      <Details name={name} url={url} />
       <GridListTileBar
         title={name.replace(/^\w/, (c) => c.toUpperCase())}
         actionIcon={(
@@ -80,9 +71,8 @@ const Pokemon = (props) => {
             >
               <StarIcon />
             </IconButton>
-            <Details name={name} />
           </>
-          )}
+            )}
         actionPosition="right"
         className={classes.titleBar}
       />

@@ -19,7 +19,6 @@ const useStyles = makeStyles(() => ({
   gridList: {
     transform: 'translateZ(0)',
   },
-
 }));
 
 const Tiles = () => {
