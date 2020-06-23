@@ -69,7 +69,7 @@ const Details = (props) => {
   return (
     <>
       <Button className={classes.cell} onClick={handleClick}>
-        <img className={classes.img} src={src} onError={handleError} alt={name} />
+        <img src={src} onError={handleError} alt={name} />
       </Button>
       <Popover
         id={id}

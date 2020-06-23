@@ -32,9 +32,6 @@ const useStyles = makeStyles(() => ({
     color: '#f1cb32',
     textShadow: '1px 1px 2px black',
   },
-  grow: {
-    flexGrow: 1,
-  },
 }));
 
 const Bar = () => {

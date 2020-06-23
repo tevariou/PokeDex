@@ -21,14 +21,6 @@ const useStyles = makeStyles(() => ({
   iconDisable: {
     color: 'white',
   },
-  cell: {
-    height: '100%',
-    width: '100%',
-  },
-  img: {
-    width: '96px',
-    height: '96px',
-  },
 }));
 
 const Pokemon = (props) => {
