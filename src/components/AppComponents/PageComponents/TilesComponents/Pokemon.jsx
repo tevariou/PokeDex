@@ -1,5 +1,6 @@
 import IconButton from '@material-ui/core/IconButton';
 import StarIcon from '@material-ui/icons/Star';
+import Tooltip from '@material-ui/core/Tooltip';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -63,7 +64,7 @@ const Pokemon = (props) => {
       <GridListTileBar
         title={name.replace(/^\w/, (c) => c.toUpperCase())}
         actionIcon={(
-          <>
+          <Tooltip title="Add to collection">
             <IconButton
               onClick={handleClick}
               aria-label={`star ${name}`}
@@ -71,8 +72,8 @@ const Pokemon = (props) => {
             >
               <StarIcon />
             </IconButton>
-          </>
-            )}
+          </Tooltip>
+        )}
         actionPosition="right"
         className={classes.titleBar}
       />
