@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
   titleBar: {
     background: 'linear-gradient(to top, rgba(0,0,0,0.07) 0%, '
       + 'rgba(0,0,0,0.04) 70%, rgba(0,0,0,0) 100%)',
+    height: '25%',
   },
   iconActive: {
     color: '#E5C845',
