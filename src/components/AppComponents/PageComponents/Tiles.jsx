@@ -16,9 +16,9 @@ const useStyles = makeStyles(() => ({
     overflow: 'hidden',
     paddingBottom: 65,
   },
-  // gridList: {
-  //   transform: 'translateZ(0)',
-  // },
+  gridList: {
+    transform: 'translateZ(0)',
+  },
   grid: {
     width: '100%',
   },
